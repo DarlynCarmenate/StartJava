@@ -44,7 +44,7 @@ public class VariablesTheme {
         System.out.println(digit4 + " " + ++digit4 + " " + --digit4);
         
         System.out.println("\n5. Перестановка значений переменных");
-        int num = 2;
+        int num1 = 2;
         int num2 = 5;
         System.out.println("Перестановка с помощью третьей переменной");
         System.out.println(num1 + " " + num2);
@@ -63,7 +63,7 @@ public class VariablesTheme {
         num1 ^= num2;
         num2 ^= num1;
         num1 ^= num2;
-        System.out.println(num1 + " " + num2); */
+        System.out.println(num1 + " " + num2);
 
         System.out.println("\n6. Вывод символов и их кодов"); 
         char sym1 = 35;
@@ -101,10 +101,10 @@ public class VariablesTheme {
                 under + backslash);
 
         System.out.println("\n9. Произведение и сумма цифр числа");
-        int numberN = 345;
-        int ones = numberN % 10;
-        int dozens = numberN / 10 % 10;
-        int hundreds = numberN / 100;
+        srcNum = 345;
+        int ones = srcNum % 10;
+        int dozens = srcNum / 10 % 10;
+        int hundreds = srcNum / 100;
         System.out.println("Сумма цифр числа N: " + (ones + dozens + hundreds));
         System.out.println("Произведение цифр числа N: " + (ones * dozens * hundreds));
 
