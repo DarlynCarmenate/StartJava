@@ -33,15 +33,15 @@ public class VariablesTheme {
         System.out.println(" JJ  a     a  V  a     a"); 
 
         System.out.println("\n4. Отображение min и max значений числовых типов данных");
-        byte digit1 = 127;
-        short digit2 = 32_767;
-        int digit3 = 2_147_483_647;
-        long digit4 = 9_223_372_036_854_775_807L;
+        byte byteNum = 127;
+        short shortNum = 32_767;
+        int intNum = 2_147_483_647;
+        long longNum = 9_223_372_036_854_775_807L;
 
-        System.out.println(digit1 + " " + ++digit1 + " " + --digit1);
-        System.out.println(digit2 + " " + ++digit2 + " " + --digit2);
-        System.out.println(digit3 + " " + ++digit3 + " " + --digit3);
-        System.out.println(digit4 + " " + ++digit4 + " " + --digit4);
+        System.out.println(byteNum + " " + ++byteNum + " " + --byteNum);
+        System.out.println(shortNum + " " + ++shortNum + " " + --shortNum);
+        System.out.println(intNum + " " + ++intNum + " " + --intNum);
+        System.out.println(longNum + " " + ++longNum + " " + --longNum);
         
         System.out.println("\n5. Перестановка значений переменных");
         int num1 = 2;
@@ -71,11 +71,11 @@ public class VariablesTheme {
         char sym3 = 64;
         char sym4 = 94;
         char sym5 = 95;
-        System.out.println((int)sym1 + " - " + sym1);
-        System.out.println((int)sym2 + " - " + sym2);
-        System.out.println((int)sym3 + " - " + sym3);
-        System.out.println((int)sym4 + " - " + sym4);
-        System.out.println((int)sym5 + " - " + sym5);
+        System.out.println((int) sym1 + " - " + sym1);
+        System.out.println((int) sym2 + " - " + sym2);
+        System.out.println((int) sym3 + " - " + sym3);
+        System.out.println((int) sym4 + " - " + sym4);
+        System.out.println((int) sym5 + " - " + sym5);
 
         System.out.println("\n7. Отображение количества сотен, десятков и единиц числа");
         int srcNum = 123;
