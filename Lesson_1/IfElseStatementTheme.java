@@ -35,15 +35,13 @@ public class IfElseStatementTheme {
         System.out.println("/n2. Поиск max и min числа");
         int num1 = 5;
         int num2 = 8;
-        int max = num1;
-        int min = num2;
-        if (num2 > max) {
-            max = num2;
-            min = num1;
-        } else if (num2 == max) {
+        if (num2 > num1) {
+            System.out.println("Max number: " + num2 + ", min number: " + num1);
+        } else if (num1 > num2) {
+            System.out.println("Max number: " + num1 + ", min number: " + num2);
+        } else {
             System.out.println("Equal numbers");
         }
-        System.out.println("Max number: " + max + ", min number: " + min);
 
         System.out.println("\n3. Работа с числом");
         int srcNum = 5;
@@ -76,12 +74,11 @@ public class IfElseStatementTheme {
         System.out.println("\n5. Определение буквы, числа или символа по их коду");
         char symbol = '\u0057';
         System.out.println("The char is: " + symbol);
-        int decmalView = symbol;
-        if (decmalView > 64 && decmalView < 91) {
+        if ((int) symbol  > 64 && (int) symbol < 91) {
             System.out.println("It's an uppercase letter");
-        } else if (decmalView > 47 && decmalView < 58) {
+        } else if ((int) symbol > 47 && (int) symbol < 58) {
             System.out.println("It's a number");
-        } else if (decmalView > 60 && decmalView < 123) {
+        } else if ((int) symbol > 60 && (int) symbol < 123) {
             System.out.println("It's a lowercase letter");
         } else {
             System.out.println("It's niether a letter, nor a number");
