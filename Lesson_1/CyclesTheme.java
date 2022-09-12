@@ -1,19 +1,19 @@
 public class CyclesTheme {
     public static void main(String[] args) {
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
-        int srcNum = -10;
-        int oddNums = 0;
-        int evenNums = 0;
+        int counter = -10;
+        int sumOdd = 0;
+        int sumEven = 0;
         do {
-            if (srcNum % 2 == 0) {
-                evenNums += srcNum;
+            if (counter % 2 == 0) {
+                sumEven += counter;
             } else {
-                oddNums += srcNum;
+                sumOdd += counter;
             }
-            srcNum++;
-        } while(srcNum < 22);
-        System.out.println("In interval [-10;21] the sum of even numbers is: " + evenNums +
-                ", the sum of odd numbers is: " + oddNums);
+            counter++;
+        } while(counter < 22);
+        System.out.println("In interval [-10;21] the sum of even numbers is: " + sumEven +
+                ", the sum of odd numbers is: " + sumOdd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int num1 = 10;
@@ -21,16 +21,16 @@ public class CyclesTheme {
         int num3 = -1;
         int max = num1;
         int min = num2;
-        if(max < num2) {
+        if(num2 > max) {
             max = num2;
         }
-        if (max < num3) {
+        if (num3 > max) {
             max = num3;
         } 
-        if (min > num1) {
+        if (num1 < min) {
             min = num1;
         }
-        if (min > num3) {
+        if (num3 < min) {
             min = num3;
         }
         for (int i = max - 1; i > min; i--) {
@@ -38,75 +38,79 @@ public class CyclesTheme {
         }
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
-        srcNum = 1234;
+        int srcNum = 1234;
         int sum = 0;
+        int digit = srcNum % 10;
         while (srcNum > 0) {
-            sum += srcNum % 10;
-            System.out.print(srcNum % 10);
+            sum += digit;
+            System.out.print(digit);
             srcNum /= 10;
         } 
         System.out.println("\nThe sum of number's digits is: " + sum);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
         int count = 0;
-        int row = 5;
-        int intervalEnd = 24;
-        for (int i = 1; i < intervalEnd; i+=2) {
+        int numsInRow = 5;
+        for (int i = 1; i < 24; i += 2) {
             System.out.printf("%1$3d  ", i);
-            count += 1;
-            if (count % row == 0) {
-                System.out.print("\n");
+            count ++;
+            if (count % numsInRow == 0) {
+                System.out.println();
             }
         }
-        int zeroAmount = row - count % row;
+        int zeroAmount = numsInRow - count % numsInRow;
         for (int i = 1; i <= zeroAmount; i++) {
             System.out.printf("%1$3d  ", 0);
         }
 
         System.out.println("\n\n5. Проверка количества единиц на четность");
         srcNum = 3141591;
+        int copySrcNum = srcNum;
         count = 0;
-        while (srcNum > 0) {
-            if (srcNum % 10 == 1) {
-                count ++;
+        while (copySrcNum > 0) {
+            if (copySrcNum % 10 == 1) {
+                count++;
             }
-            srcNum /= 10;
+            copySrcNum /= 10;
         }
         if (count % 2 == 0) {
-            System.out.println("Number 3141591 contains an even number of ones");
+            System.out.printf("Number %d contains %d (even number) ones", srcNum, count);
         } else {
-            System.out.println("Number 3141591 contains an odd number of ones");
+            System.out.printf("Number %d contains %d (odd number) ones %n", srcNum, count);
         }
+
         System.out.println("\n6. Отображение фигур в консоли");
         for (int i = 1; i <= 50; i++) {
             System.out.print("*");
             if (i % 10 == 0) {
-                System.out.print("\n");
+                System.out.println();
             }
         }
-        row = 5;
+
+        int row = 5;
         int elements = 5;
         while (row > 0) {
-            System.out.print("\n");
+            System.out.println();
             int i = elements;
             while (i > 0) {
                 System.out.print("#");
                 i--;
             }
-            elements -= elements / row;
+            elements--;
             row--;
         }
-        System.out.print("\n");
+        System.out.println();
+
         row = 5;
         int half = row / 2;
         elements = 1;
         do {
-            System.out.print("\n");
+            System.out.println();
             int i = elements;
             do {
                 System.out.print("$");
                 i--;
-                } while (i > 0);
+            } while (i > 0);
             if (row > half + 1) {
                 elements++;
             } else {
@@ -117,7 +121,7 @@ public class CyclesTheme {
 
         System.out.println("\n\n7. Отображение ASCII-символов");
         System.out.println("Dec   Char");
-        for (char i = 1; i < 47; i+=2) {
+        for (char i = 1; i < 47; i += 2) {
             System.out.printf("%3d  -  %2c%n", (int) i, i);
         }
         for (char i = 98; i < 122; i += 2) {
@@ -126,38 +130,37 @@ public class CyclesTheme {
 
         System.out.println("\n8. Проверка, является ли число палиндромом");
         srcNum = 1234321;
-        int tempNum = srcNum;
-        int lastNum = 0;
+        copySrcNum = srcNum;
+        int lastDigit = 0;
         int reverse = 0;
-        while (tempNum > 0) {
-            lastNum = tempNum % 10;
-            reverse = reverse * 10 + lastNum;
-            tempNum /= 10;
-            System.out.println(reverse);
+        while (copySrcNum > 0) {
+            lastDigit = copySrcNum % 10;
+            reverse = reverse * 10 + lastDigit;
+            copySrcNum /= 10;
         }
         if (srcNum == reverse) {
-            System.out.printf("The number %d is a palyndrom", srcNum);
+            System.out.printf("The number %d is a palindrome", srcNum);
         } else {
-            System.out.printf("The number %d is not a palyndrom", srcNum);
+            System.out.printf("The number %d is not a palindrome", srcNum);
         }
 
         System.out.println("\n\n9. Определение, является ли число счастливым");
         srcNum = 345432;
+        int numLength = 6;
         int sum1 = 0;
         int sum2 = 0;
         count = 0;
         while (srcNum > 0) {
             count++;
-            if (count < 4) {
+            if (count <= numLength / 2) {
                 sum2 += srcNum % 10;
-                srcNum /= 10;
             } else {
                 sum1 += srcNum % 10;
-                srcNum /=10;
             }
+            srcNum /=10;
         }
-        System.out.println("The sum of abc digits is: " + sum1);
-        System.out.println("The sum of def digits is: " + sum2);
+        System.out.println("The sum of 123 digits is: " + sum1);
+        System.out.println("The sum of 456 digits is: " + sum2);
         if (sum1 == sum2) {
             System.out.println("The number is lucky!");
         } else {
@@ -170,7 +173,7 @@ public class CyclesTheme {
         for (int i = 2; i <= 9; i++) {
             System.out.printf(" %d ", i);
         }
-        System.out.print("\n");
+        System.out.println();
         for (int i = 2; i <= 9; i++) {
             System.out.print("____");
         }
