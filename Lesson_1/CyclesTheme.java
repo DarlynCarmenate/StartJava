@@ -21,16 +21,16 @@ public class CyclesTheme {
         int num3 = -1;
         int max = num1;
         int min = num2;
-        if(num2 > max) {
+        if (num2 > max) {
             max = num2;
         }
-        if (num3 > max) {
+        else if (num3 > max) {
             max = num3;
         } 
         if (num1 < min) {
             min = num1;
         }
-        if (num3 < min) {
+        else if (num3 < min) {
             min = num3;
         }
         for (int i = max - 1; i > min; i--) {
@@ -40,8 +40,9 @@ public class CyclesTheme {
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int srcNum = 1234;
         int sum = 0;
-        int digit = srcNum % 10;
+        int digit = 0;
         while (srcNum > 0) {
+            digit = srcNum % 10;
             sum += digit;
             System.out.print(digit);
             srcNum /= 10;
@@ -53,7 +54,7 @@ public class CyclesTheme {
         int numsInRow = 5;
         for (int i = 1; i < 24; i += 2) {
             System.out.printf("%1$3d  ", i);
-            count ++;
+            count++;
             if (count % numsInRow == 0) {
                 System.out.println();
             }
@@ -99,25 +100,22 @@ public class CyclesTheme {
             elements--;
             row--;
         }
-        System.out.println();
+        System.out.println("\n");
 
-        row = 5;
-        int half = row / 2;
-        elements = 1;
+        row = 0;
+        count = 0;
         do {
-            System.out.println();
-            int i = elements;
+            elements = 0;
             do {
-                System.out.print("$");
-                i--;
-            } while (i > 0);
-            if (row > half + 1) {
-                elements++;
+               System.out.print("$");
+            } while (++elements <= row);
+            if (++count <= 2) {
+                row++;
             } else {
-                elements--;
+                row--;
             }
-            row--;
-        } while (row > 0);
+            System.out.println();
+        } while (row >= 0);
 
         System.out.println("\n\n7. Отображение ASCII-символов");
         System.out.println("Dec   Char");
@@ -146,6 +144,8 @@ public class CyclesTheme {
 
         System.out.println("\n\n9. Определение, является ли число счастливым");
         srcNum = 345432;
+        int firstPart = srcNum / 1000;
+        int secondPart = srcNum % 1000;
         int numLength = 6;
         int sum1 = 0;
         int sum2 = 0;
@@ -157,10 +157,10 @@ public class CyclesTheme {
             } else {
                 sum1 += srcNum % 10;
             }
-            srcNum /=10;
+            srcNum /= 10;
         }
-        System.out.println("The sum of 123 digits is: " + sum1);
-        System.out.println("The sum of 456 digits is: " + sum2);
+        System.out.printf("The sum of %d digits is: %d%n", firstPart, sum1);
+        System.out.printf("The sum of %d digits is: %d%n", secondPart, sum2);
         if (sum1 == sum2) {
             System.out.println("The number is lucky!");
         } else {
