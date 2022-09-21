@@ -16,11 +16,9 @@ public class Calculator {
         } else if (sign == '%') {
             result = a % b;
         } else if (sign == '^') {
-            result = 1;
             int tempB = b;
-            while (tempB > 0) {
-                result = result * a;
-                tempB--;
+            for (result = 1; tempB > 0; tempB--) {
+                result *= a;
             }
         }
         System.out.print(a + "" + sign + "" + b + "=" + result);
