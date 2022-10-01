@@ -1,8 +1,7 @@
-
 public class Calculator {
-    int a;
-    int b;
-    char sign;
+    private int a;
+    private int b;
+    private char sign;
 
     public int getA() {
         return a;
@@ -28,8 +27,8 @@ public class Calculator {
         this.sign = sign;
     }
 
-    public void calcCount(int a, int b, char sign) {
-        int result = 0;
+    public void calculate(int a, int b, char sign) {
+        int result = 1;
         switch (sign) {
             case '+' :
                 result = a + b;
@@ -47,14 +46,13 @@ public class Calculator {
                 result = a % b;
                 break;
             case '^' :
-                int tempB = b;
-                for (result = 1; tempB > 0; tempB--) {
+                for (int i = b; i > 0; i--) {
                     result *= a;
                 }
                 break;
             default:
                 System.out.println("Wrong sign");
-            }
-        System.out.print(a + "" + sign + "" + b + "=" + result);
         }
+    System.out.print(a + "" + sign + "" + b + "=" + result);
     }
+}
