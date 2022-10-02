@@ -11,6 +11,7 @@ public class CalculatorTest {
             scanner.nextLine();
             System.out.print("Input the sign: ");
             char sign = scanner.next().charAt(0);
+            scanner.nextLine();
             System.out.print("Input the second number: ");
             int num2 = scanner.nextInt();
             scanner.nextLine();
@@ -21,9 +22,15 @@ public class CalculatorTest {
 
             calc.calculate(num1, num2, sign);
 
-            System.out.println("\nWould you like to make another count? Input yes or no");
-            answer = scanner.nextLine();
-            System.out.println(answer);
-        } while (answer == "yes");
+            while (true) {
+                System.out.println("\nWould you like to make another count? Input yes or no");
+                answer = scanner.nextLine();
+                if (answer.equals("yes") || answer.equals("no")) {
+                    break;
+                } else {
+                    System.out.println("Wrong input, try again");
+                }
+            }  
+        } while (answer.equals("yes"));
     }
 }
