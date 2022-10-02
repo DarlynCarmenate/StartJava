@@ -53,6 +53,6 @@ public class Calculator {
             default:
                 System.out.println("Wrong sign");
         }
-    System.out.print(a + "" + sign + "" + b + "=" + result);
+        System.out.print(a + "" + sign + "" + b + "=" + result);
     }
 }

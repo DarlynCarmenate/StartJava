@@ -2,38 +2,28 @@ import java.util.Scanner;
 
 public class CalculatorTest {
     public static void main(String[] args) {
-        Calculator calc = new Calculator();
-        Scanner scanner = new Scanner(System.in);
-
+            Calculator calc = new Calculator();
+            Scanner scanner = new Scanner(System.in);
+            String answer = "yes";
         do {
-        System.out.print("Input the first number: ");
-        int inputA = scanner.nextInt();
-        System.out.print("Input the sign: ");
-        char inputSign = scanner.next().charAt(0);
-        System.out.print("Input the second number: ");
-        int inputB = scanner.nextInt();
-
-        while (inputA <= 0 || inputB <= 0) {
-            System.out.println("Input positive numbers, please!");
             System.out.print("Input the first number: ");
-            inputA = scanner.nextInt();
+            int num1 = scanner.nextInt();
+            scanner.nextLine();
+            System.out.print("Input the sign: ");
+            char sign = scanner.next().charAt(0);
             System.out.print("Input the second number: ");
-            inputB = scanner.nextInt();
-        }
+            int num2 = scanner.nextInt();
+            scanner.nextLine();
 
-            calc.setA(inputA);
-            calc.setB(inputB);
-            calc.setSign(inputSign);
+                calc.setA(num1);
+                calc.setB(num2);
+                calc.setSign(sign);
 
-        int numA = calc.getA();
-        int numB = calc.getB();
-        char signC = calc.getSign();
+            calc.calculate(num1, num2, sign);
 
-        calc.calculate(numA, numB, signC);
-
-        System.out.println("\nWould you like to make another count? Input yes or no");
-        String answer = scanner.next();
-
+            System.out.println("\nWould you like to make another count? Input yes or no");
+            answer = scanner.nextLine();
+            System.out.println(answer);
         } while (answer == "yes");
     }
 }
