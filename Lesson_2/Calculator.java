@@ -3,24 +3,12 @@ public class Calculator {
     private int b;
     private char sign;
 
-    public int getA() {
-        return a;
-    }
-
     public void setA(int a) {
         this.a = a;
     }
 
-    public int getB() {
-        return b;
-    }
-
     public void setB(int b) {
         this.b = b;
-    }
-
-    public char getSign() {
-        return sign;
     }
 
     public void setSign(char sign) {
@@ -52,6 +40,7 @@ public class Calculator {
                 break;
             default:
                 System.out.println("Wrong sign");
+                return;
         }
         System.out.print(a + "" + sign + "" + b + "=" + result);
     }
