@@ -1,7 +1,6 @@
 public class JaegerTest {
     public static void main(String[] args) {
         Jaeger jaeger1 = new Jaeger();
-        Jaeger jaeger2 = new Jaeger("Jipsy Danger", "mark-3", 79.25f, 1.980f, 8, 6);
 
         jaeger1.setModelName("ChernoAlpha");
         jaeger1.setMark("mark-1");
@@ -10,9 +9,9 @@ public class JaegerTest {
         jaeger1.setStrength(10);
         jaeger1.setArmor(10);
 
+        Jaeger jaeger2 = new Jaeger("Jipsy Danger", "mark-3", 79.25f, 1.980f, 8, 6);
         jaeger2.useVortexCannon();
         System.out.println(jaeger1.scanKaiju());
-
 
         System.out.println("Jaeger's 1 name: " + jaeger1.getModelName() + "\nJaeger's 2 name is: "
                 + jaeger2.getModelName());
