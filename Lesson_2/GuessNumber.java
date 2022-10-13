@@ -19,14 +19,13 @@ public class GuessNumber {
         currentPlayer = player1;
 
         while (targetNum != num) {
-            
             System.out.println(currentPlayer.getName() + ", input a number");
             num = scn.nextInt();
             currentPlayer.setNumber(num);
             if (targetNum < currentPlayer.getNumber()) {
-                System.out.println("The number " + num + " is greater than the target number");
+                System.out.println("The number " + currentPlayer.getNumber() + " is greater than the target number");
             } else if (targetNum > currentPlayer.getNumber()) {
-                System.out.println("The number " + num + " is less than the target number");
+                System.out.println("The number " + currentPlayer.getNumber() + " is less than the target number");
             }
             if (currentPlayer == player1) {
                 currentPlayer = player2;
