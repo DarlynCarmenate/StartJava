@@ -17,7 +17,7 @@ public class Calculator {
             result = a % b;
         } else if (sign == '^') {
             int tempB = b;
-            for (result = 1; tempB > 0; tempB--) {
+            for (reult = 1; tempB > 0; tempB--) {
                 result *= a;
             }
         }
