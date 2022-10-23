@@ -1,3 +1,5 @@
+package src.com.startjava.Lesson_1.base;
+
 import java.util.Scanner;
 
 public class MyFirstApp{
