@@ -1,4 +1,4 @@
-package src.com.startjava.Lesson_1.base;
+package com.startjava.Lesson_1.base;
 
 public class IfElseStatementTheme {
     public static void main(String[] args) {
