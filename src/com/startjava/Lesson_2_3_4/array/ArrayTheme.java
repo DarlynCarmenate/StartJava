@@ -1,7 +1,5 @@
 package com.startjava.Lesson_2_3_4.array;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Random;
 
 public class ArrayTheme {
@@ -45,7 +43,7 @@ public class ArrayTheme {
         System.out.printf("Number %d has an index %d%n", nums2[0], 0);
         System.out.printf("Number %d has an index %d", nums2[len - 1], len - 1);
 
-        System.out.println("\n3. Удаление элементов массива");
+        System.out.println("\n\n3. Удаление элементов массива");
         len = 15;
         float[] nums3 = new float[len];
         Random rnd = new Random();
