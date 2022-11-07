@@ -1,87 +1,84 @@
 package com.startjava.Lesson_2_3_4.array;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Random;
 
 public class ArrayTheme {
     public static void main(String[] args) {
-
         System.out.println("1. Реверс значений массива");
         int[] nums1 = {3, 6, 4, 1, 7, 2, 5};
-        int size = nums1.length;
+        int len = nums1.length;
 
-        for (int number : nums1) {
-            System.out.print(number + " ");
+        for (int num : nums1) {
+            System.out.print(num + " ");
         }
         System.out.println();
 
-        for (int i = 0; i < size/2; i++) {
+        for (int i = 0; i < len;) {
             int temp = nums1[i];
-            nums1[i] = nums1[size - i - 1];
-            nums1[size - i - 1] = temp;
+            nums1[i++] = nums1[--len];
+            nums1[len] = temp;
         }
 
-        for (int number : nums1) {
-            System.out.print(number + " ");
+        for (int num : nums1) {
+            System.out.print(num + " ");
         }
 
         System.out.println("\n\n2. Вывод произведения элементов массива");
-        size = 10;
-        int[] nums2 = new int[size];
-        String pow = "";
+        len = 10;
+        int[] nums2 = new int[len];
         int result = 1;
-        for (int i = 0; i < size; i++) {
+
+        for (int i = 0; i < len; i++) {
             nums2[i] = i;
-            switch (nums2[i]) {
-                case 0: case 9:
-                    System.out.printf("Number %d has index %d%n", nums2[i], i);
-                    break;
-                case 8:
-                    pow += nums2[i] + "=";
-                    result *= nums2[i];
-                    break;
-                default:
-                    pow += nums2[i] + "+";
-                    result *= nums2[i];
-                    break;
+        }
+
+        for (int i = 0; i < len; i++) {
+            System.out.print( (nums2[i] > 0 && nums2[i] < 8) ? nums2[i] + " * " : "");
+            System.out.print( (nums2[i] == 8) ? nums2[i] + " = " : "");
+            if (nums2[i] > 0 && nums2[i] < 9) {
+                result *= nums2[i];
             }
         }
-        System.out.println(pow + result);
+            System.out.println(result);
+        System.out.printf("Number %d has an index %d%n", nums2[0], 0);
+        System.out.printf("Number %d has an index %d", nums2[len - 1], len - 1);
 
         System.out.println("\n3. Удаление элементов массива");
-        size = 15;
-        float[] nums3 = new float[size];
+        len = 15;
+        float[] nums3 = new float[len];
         Random rnd = new Random();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < len; i++) {
             nums3[i] = rnd.nextFloat();
             System.out.printf("%8.3f", nums3[i]);
-            if (i == size/2) System.out.println();
+            if (i == len / 2) System.out.println();
         }
 
-        float midNum = nums3[size/2 + 1];
+        float midNum = nums3[len / 2 + 1];
         int count = 0;
         System.out.printf("\nThe middle number is %6.3f\n", midNum);
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < len; i++) {
             if (nums3[i] > midNum) {
                 nums3[i] = 0;
                 count++;
             }
             System.out.printf("%8.3f", nums3[i]);
-            if (i == size/2) System.out.println();
+            if (i == len / 2) System.out.println();
         }
         System.out.println("\nThe number of zeroes is " + count);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        size = 26;
-        char[] letters = new char[size];
-        letters[0] = '\u0041';
-        for (int i = 1; i < size; i++) {
-            letters[i] = (char) (letters[i - 1] + 1);
+        len = 26;
+        char[] letters = new char[len];
+        for (int i = 0; i < len; i++) {
+            letters[i] = (char) ('A' + i);
         }
 
-        for (int i = 0; i < size; i++) {
-            for (int j = size - 1; j >= size - 1 - i; j--) {
+        for (int i = 0; i < len; i++) {
+            for (int j = len - 1; j >= len - 1 - i; j--) {
                 System.out.print(letters[j]);
             }
             System.out.println();
@@ -89,10 +86,10 @@ public class ArrayTheme {
 
         System.out.println("\n5. Генерация уникальных чисел");
         int i, j;
-        size = 30;
-        int[] nums4 = new int[size];
+        len = 30;
+        int[] nums4 = new int[len];
         int tryNum = 0;
-        for (i = 0; i < size;) {
+        for (i = 0; i < len;) {
             tryNum = (int) (Math.random() * 40 + 60);
             for (j = 0; j < i; j++) {
                 if (tryNum == nums4[j]) {
@@ -107,7 +104,7 @@ public class ArrayTheme {
         }
         int temp = 0;
         System.out.println();
-        for (int k = size - 1; k >= 0; k--) {
+        for (int k = len - 1; k >= 0; k--) {
             for (int l = 0; l < k; l++) {
                 if (nums4[l] < nums4[l + 1]) {
                     temp = nums4[l];
