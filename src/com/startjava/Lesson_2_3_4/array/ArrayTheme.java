@@ -9,7 +9,7 @@ public class ArrayTheme {
         int[] nums1 = {3, 6, 4, 1, 7, 2, 5};
         int len = nums1.length;
 
-        printArray(nums1);
+        printIntArray(nums1);
         System.out.println();
 
         for (int i = 0; i < len; i++) {
@@ -18,7 +18,7 @@ public class ArrayTheme {
             nums1[len] = temp;
         }
 
-        printArray(nums1);
+        printIntArray(nums1);
 
         System.out.println("\n\n2. Вывод произведения элементов массива");
         len = 10;
@@ -107,9 +107,48 @@ public class ArrayTheme {
             }
             System.out.print(uniqueNums[i] + " ");
             if (i % 10 == 0) System.out.println();
+
         }
+        System.out.println("\n*6. Сдвиг элементов массива");
+        String[] srcArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        len = srcArr.length;
+
+//      Поиск длины нового массива
+        for (int i = 0; i < srcArr.length; i++) {
+            if (srcArr[i].contains(" ") || srcArr[i] == "") {
+                len--;
+            }
+        }
+        String[] destArr = new String[len];
+        int srcPos = 0;
+        int destPos = 0;
+
+//      Если встречается элемент массива с пробелом или пустой строкой, начинается подсчет колиества непустых
+//      элементов после него
+        for (int i = 0; i < srcArr.length; i++) {
+            count = 0;
+            if (srcArr[i].contains(" ") || srcArr[i] == "") {
+                srcPos = i + 1;
+                System.out.println("srcPos " + srcPos);
+                System.out.println("i " + i);
+                int j = srcPos;
+                while (j < srcArr.length && !(srcArr[j].contains(" ") || srcArr[j] == "")) {
+                    count++;
+                    j++;
+                    System.out.println("count" + count);
+                    System.out.println("j" + j);
+                }
+            }
+//            Если есть жлементы ны запись, они записываются в новый массив
+            if (count > 0) {
+                System.out.println(" " + srcArr.length + " " + srcPos + " " + destArr.length + " " + destPos + " " + count);
+                System.arraycopy(srcArr, srcPos, destArr, destPos, count);
+                destPos += count;
+            }
+        }
+        printStringArray(destArr);
     }
-    public static void printArray(int[] array) {
+    public static void printIntArray(int[] array) {
         for (int num : array) {
             System.out.print(num + " ");
         }
@@ -118,6 +157,12 @@ public class ArrayTheme {
         for (int i = 0; i < arr.length; i++) {
             System.out.printf("%8.3f", arr[i]);
             if (i == arr.length / 2) System.out.println();
+        }
+    }
+
+    public static void printStringArray(String[] chars) {
+        for (int i = 0; i < chars.length; i++) {
+            System.out.print(chars[i] + " ");
         }
     }
 }
