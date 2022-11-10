@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class ArrayTheme {
     public static void main(String[] args) {
-
         System.out.println("1. Реверс значений массива");
         int[] nums1 = {3, 6, 4, 1, 7, 2, 5};
         int len = nums1.length;
@@ -30,7 +29,7 @@ public class ArrayTheme {
         }
 
         for (int i = 1; i < len - 1; i++) {
-            System.out.print((nums2[i] == 8) ? nums2[i] + " = " : nums2[i] + " * ");
+            System.out.print(nums2[i] + ((nums2[i] == 8) ? " = " : " * "));
             prodDigits *= nums2[i];
         }
         System.out.println(prodDigits);
@@ -91,12 +90,10 @@ public class ArrayTheme {
             }
             if (i == j) {
                 uniqueNums[i] = trialNum;
-                System.out.print(uniqueNums[i] + " ");
                 i++;
             }
         }
         int temp = 0;
-        System.out.println();
         for (int i = len - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (uniqueNums[j] < uniqueNums[j + 1]) {
@@ -111,11 +108,13 @@ public class ArrayTheme {
         }
         System.out.println("\n*6. Сдвиг элементов массива");
         String[] srcArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        printStringArray(srcArr);
+        System.out.println();
         len = srcArr.length;
 
-//      Поиск длины нового массива
+        //Поиск длины нового массива
         for (int i = 0; i < srcArr.length; i++) {
-            if (srcArr[i].contains(" ") || srcArr[i] == "") {
+            if (srcArr[i].isBlank()) {
                 len--;
             }
         }
@@ -123,25 +122,20 @@ public class ArrayTheme {
         int srcPos = 0;
         int destPos = 0;
 
-//      Если встречается элемент массива с пробелом или пустой строкой, начинается подсчет колиества непустых
-//      элементов после него
+        /*Если встречается элемент массива с пробелом или пустой строкой, начинается подсчет колиества непустых
+        элементов после него*/
         for (int i = 0; i < srcArr.length; i++) {
             count = 0;
-            if (srcArr[i].contains(" ") || srcArr[i] == "") {
+            if (srcArr[i].isBlank()) {
                 srcPos = i + 1;
-                System.out.println("srcPos " + srcPos);
-                System.out.println("i " + i);
                 int j = srcPos;
-                while (j < srcArr.length && !(srcArr[j].contains(" ") || srcArr[j] == "")) {
+                while (j < srcArr.length && !srcArr[j].isBlank()) {
                     count++;
                     j++;
-                    System.out.println("count" + count);
-                    System.out.println("j" + j);
                 }
             }
-//            Если есть жлементы ны запись, они записываются в новый массив
+            //Если есть жлементы ны запись, они записываются в новый массив
             if (count > 0) {
-                System.out.println(" " + srcArr.length + " " + srcPos + " " + destArr.length + " " + destPos + " " + count);
                 System.arraycopy(srcArr, srcPos, destArr, destPos, count);
                 destPos += count;
             }
@@ -153,6 +147,7 @@ public class ArrayTheme {
             System.out.print(num + " ");
         }
     }
+
     public static void printFloatArray(float[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.printf("%8.3f", arr[i]);
