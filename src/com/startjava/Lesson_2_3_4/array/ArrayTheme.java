@@ -142,20 +142,20 @@ public class ArrayTheme {
         }
         printStringArray(destArr);
     }
-    public static void printIntArray(int[] array) {
+    private static void printIntArray(int[] array) {
         for (int num : array) {
             System.out.print(num + " ");
         }
     }
 
-    public static void printFloatArray(float[] arr) {
+    private static void printFloatArray(float[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.printf("%8.3f", arr[i]);
             if (i == arr.length / 2) System.out.println();
         }
     }
 
-    public static void printStringArray(String[] chars) {
+    private static void printStringArray(String[] chars) {
         for (int i = 0; i < chars.length; i++) {
             System.out.print(chars[i] + " ");
         }
