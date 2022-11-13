@@ -1,9 +1,11 @@
 package com.startjava.Lesson_2_3_4.calculator;
 
+import static java.lang.Math.pow;
+
 public class Calculator {
     private int a;
     private int b;
-    private char sign;
+    private String sign;
 
     public void setA(int a) {
         this.a = a;
@@ -13,37 +15,35 @@ public class Calculator {
         this.b = b;
     }
 
-    public void setSign(char sign) {
+    public void setSign(String sign) {
         this.sign = sign;
     }
 
-    public void calculate() {
+    public int calculate() {
         int result = 1;
         switch (sign) {
-            case '+' :
+            case "+" :
                 result = a + b;
                 break;
-            case '-' :
+            case "-" :
                 result = a - b;
                 break;
-            case '*' :
+            case "*" :
                 result = a * b;
                 break;
-            case '/' :
+            case "/" :
                 result = a / b;
                 break;
-            case '%' :
+            case "%" :
                 result = a % b;
                 break;
-            case '^' :
-                for (int i = b; i > 0; i--) {
-                    result *= a;
-                }
+            case "^" :
+                result = (int) pow(a, b);
                 break;
             default:
                 System.out.println("Wrong sign");
-                return;
+                return 0;
         }
-        System.out.print(a + "" + sign + "" + b + "=" + result);
+        return result;
     }
 }

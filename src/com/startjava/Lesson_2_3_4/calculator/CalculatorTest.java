@@ -8,23 +8,21 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String answer;
         do {
-            System.out.print("Input the first number: ");
-            int num1 = scanner.nextInt();
+            System.out.print("Input a mathematical expression: ");
+            String expression = scanner.nextLine();
+            String[] splittedExpr = expression.split(" ");
+            int num1 = Integer.parseInt(splittedExpr[0]);
             calc.setA(num1);
-            System.out.print("Input the sign: ");
-            char sign = scanner.next().charAt(0);
-            calc.setSign(sign);
-            System.out.print("Input the second number: ");
-            int num2 = scanner.nextInt();
+            int num2 = Integer.parseInt(splittedExpr[2]);
             calc.setB(num2);
-            scanner.nextLine();
+            calc.setSign(splittedExpr[1]);
 
-            calc.calculate();
+            System.out.println(num1 + splittedExpr[1] + num2 + " = " + calc.calculate());
 
-            System.out.println("\nWould you like to continue? Input yes or no");
+            System.out.print("\nWould you like to continue? Input yes or no: ");
             answer = scanner.nextLine();
             while (!"yes".equals(answer) && !"no".equals(answer)) {
-                System.out.println("Wrong answer. Input yes or no");
+                System.out.println("Wrong answer. Input yes or no: ");
                 answer = scanner.nextLine();
             } 
         } while (answer.equals("yes"));
