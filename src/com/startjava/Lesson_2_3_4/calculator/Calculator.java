@@ -1,25 +1,20 @@
 package com.startjava.Lesson_2_3_4.calculator;
 
-import static java.lang.Math.pow;
-
 public class Calculator {
     private int a;
     private int b;
     private String sign;
+    private String expression;
 
-    public void setA(int a) {
-        this.a = a;
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 
-    public void setB(int b) {
-        this.b = b;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
-
-    public int calculate() {
+    public String calculate() {
+        String[] splittedExpr = expression.split(" ");
+        a = Integer.parseInt(splittedExpr[0]);
+        b = Integer.parseInt(splittedExpr[2]);
+        sign = splittedExpr[1];
         int result = 1;
         switch (sign) {
             case "+" :
@@ -38,12 +33,11 @@ public class Calculator {
                 result = a % b;
                 break;
             case "^" :
-                result = (int) pow(a, b);
+                result = (int) Math.pow(a, b);
                 break;
             default:
-                System.out.println("Wrong sign");
-                return 0;
+                System.out.println("Wrong parameters");
         }
-        return result;
+        return a + splittedExpr[1] + b + " = " + result;
     }
 }

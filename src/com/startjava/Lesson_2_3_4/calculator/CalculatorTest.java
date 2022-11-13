@@ -10,14 +10,8 @@ public class CalculatorTest {
         do {
             System.out.print("Input a mathematical expression: ");
             String expression = scanner.nextLine();
-            String[] splittedExpr = expression.split(" ");
-            int num1 = Integer.parseInt(splittedExpr[0]);
-            calc.setA(num1);
-            int num2 = Integer.parseInt(splittedExpr[2]);
-            calc.setB(num2);
-            calc.setSign(splittedExpr[1]);
-
-            System.out.println(num1 + splittedExpr[1] + num2 + " = " + calc.calculate());
+            calc.setExpression(expression);
+            System.out.println(calc.calculate());
 
             System.out.print("\nWould you like to continue? Input yes or no: ");
             answer = scanner.nextLine();
