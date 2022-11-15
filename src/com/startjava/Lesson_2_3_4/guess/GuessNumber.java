@@ -22,11 +22,15 @@ public class GuessNumber {
         while (targetNum != num) {
             System.out.println(currentPlayer.getName() + ", input a number");
             num = scn.nextInt();
-            currentPlayer.setNumber(num);
-            if (currentPlayer.getNumber() > targetNum) {
-                System.out.println("The number " + currentPlayer.getNumber() + " is greater than the target number");
-            } else if (currentPlayer.getNumber() > targetNum) {
-                System.out.println("The number " + currentPlayer.getNumber() + " is less than the target number");
+            currentPlayer.setAttemptsPlayer(num);
+
+            if (num > targetNum) {
+                System.out.println("The number " + num + " is greater than the target number");
+            } else if (num < targetNum) {
+                System.out.println("The number " + num + " is less than the target number");
+            }
+            if (currentPlayer.getAttempts() == 10) {
+                System.out.println(currentPlayer.getName() + ", you've run out your attempts");
             }
             if (currentPlayer == player1) {
                 currentPlayer = player2;
@@ -34,6 +38,15 @@ public class GuessNumber {
                 currentPlayer = player1;
             }
         }
-        System.out.println("You guessed right! I picked number " + num);
+        System.out.println(currentPlayer.getName() + " guessed right the number " + num + " on " +
+                currentPlayer.getAttempts() + " attempts");
+        System.out.print(player1.getName() + "'s attempts: ");
+        player1.printAttempts();
+        System.out.println();
+        System.out.print(player2.getName() + "'s attempts: ");
+        player2.printAttempts();
+        System.out.println();
+        player1.initArray();
+        player2.initArray();
     }
 }
