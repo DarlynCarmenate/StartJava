@@ -22,7 +22,7 @@ public class GuessNumber {
         while (targetNum != num) {
             System.out.println(currentPlayer.getName() + ", input a number");
             num = scn.nextInt();
-            currentPlayer.setAttemptsPlayer(num);
+            currentPlayer.setNewAttempt(num);
 
             if (num > targetNum) {
                 System.out.println("The number " + num + " is greater than the target number");

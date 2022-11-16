@@ -22,7 +22,7 @@ public class Player {
         return attempts;
     }
 
-    public void setAttemptsPlayer(int num) {
+    public void setNewAttempt(int num) {
         this.attemptsPlayer[this.attempts] = num;
         this.attempts++;
     }
