@@ -4,14 +4,12 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int attempts = 0;
-    private int[] attemptsPlayer;
+    private int attempts;
+    private int[] enteredNums;
 
     public Player(String name) {
-
         this.name = name;
-        this.attemptsPlayer = new int[10];
-
+        this.enteredNums = new int[10];
     }
 
     public String getName() {
@@ -22,20 +20,18 @@ public class Player {
         return attempts;
     }
 
-    public void setNewAttempt(int num) {
-        this.attemptsPlayer[this.attempts] = num;
-        this.attempts++;
+    public void addNum(int num) {
+        enteredNums[attempts] = num;
+        attempts++;
     }
 
-    public void printAttempts() {
-        int[] allAttempts = Arrays.copyOf(attemptsPlayer, attempts);
-        for (int items : allAttempts) {
-            System.out.print(items + " ");
-        }
+    public int[] printAttempts() {
+        int[] allAttempts = Arrays.copyOf(enteredNums, attempts);
+        return allAttempts;
     }
 
-    public void initArray() {
-        Arrays.fill(attemptsPlayer, 0);
+    public void clearAttempts() {
+        Arrays.fill(enteredNums, 0);
         attempts = 0;
     }
 }
