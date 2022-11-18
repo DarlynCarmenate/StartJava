@@ -25,13 +25,12 @@ public class Player {
         attempts++;
     }
 
-    public int[] printAttempts() {
-        int[] allAttempts = Arrays.copyOf(enteredNums, attempts);
-        return allAttempts;
+    public int[] getEnteredNums() {
+        return Arrays.copyOf(enteredNums, attempts);
     }
 
     public void clearAttempts() {
-        Arrays.fill(enteredNums, 0);
+        Arrays.fill(enteredNums, 0, attempts,0);
         attempts = 0;
     }
 }
