@@ -9,7 +9,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.enteredNums = new int[10];
+        enteredNums = new int[10];
     }
 
     public String getName() {
@@ -20,9 +20,13 @@ public class Player {
         return attempts;
     }
 
-    public void addNum(int num) {
-        enteredNums[attempts] = num;
-        attempts++;
+    public boolean addNum(int num) {
+        if (num > 0 && num < 101) {
+            enteredNums[attempts] = num;
+            attempts++;
+            return true;
+        }
+        return false;
     }
 
     public int[] getEnteredNums() {
