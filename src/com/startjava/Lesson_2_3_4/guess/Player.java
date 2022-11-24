@@ -7,7 +7,7 @@ public class Player {
     private int attempts;
     private final int[] enteredNums;
 
-    private int winner;
+    private int numOfVictories;
 
     public Player(String name) {
         this.name = name;
@@ -22,12 +22,12 @@ public class Player {
         return attempts;
     }
 
-    public int getWinner() {
-        return winner;
+    public int getNumOfVictories() {
+        return numOfVictories;
     }
 
-    public void setWinner(int winner) {
-        this.winner += winner;
+    public void setNumOfVictories(int numOfVictories) {
+        this.numOfVictories += numOfVictories;
     }
 
     public boolean addNum(int num) {
