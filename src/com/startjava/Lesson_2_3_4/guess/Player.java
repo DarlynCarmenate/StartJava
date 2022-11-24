@@ -3,9 +3,11 @@ package com.startjava.Lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    private String name;
+    private final String name;
     private int attempts;
-    private int[] enteredNums;
+    private final int[] enteredNums;
+
+    private int winner;
 
     public Player(String name) {
         this.name = name;
@@ -18,6 +20,14 @@ public class Player {
 
     public int getAttempts() {
         return attempts;
+    }
+
+    public int getWinner() {
+        return winner;
+    }
+
+    public void setWinner(int winner) {
+        this.winner += winner;
     }
 
     public boolean addNum(int num) {
