@@ -12,22 +12,22 @@ public class GuessNumber {
 
     private int num;
 
-    private int currentPlayer = 0;
+    private int currentPlayer;
 
     public GuessNumber(Player... player) {
         players = player;
-        castLots();
     }
 
     public void start() {
-        int index = 0;
+        int round = 1;
         Random rnd = new Random();
         int targetNum = rnd.nextInt(100) + 1;
-        while (index < ROUNDS) {
+        castLots();
+        while (round <= ROUNDS) {
             while (true) {
-                num = numRequest();
+                num = inputNums();
                 if (num == 0) continue;
-                if (compareNums(num, targetNum) == 0) break;
+                if (compareNums(num, targetNum)) break;
                 if (players[currentPlayer].getAttempts() == 10) {
                     System.out.println(players[currentPlayer].getName() + ", you've run out your attempts");
                 }
@@ -35,18 +35,18 @@ public class GuessNumber {
             }
             System.out.println(players[currentPlayer].getName() + " guessed right the number " + num + " on " +
                     players[currentPlayer].getAttempts() + " attempts");
-            players[currentPlayer].setNumOfVictories(1);
+            players[currentPlayer].setNumWins(1);
 
             for (Player player : players) {
                 printEnteredNums(player);
                 player.clearAttempts();
             }
-            index++;
+            round++;
         }
-        printWinner(findWinner(players));
+        printWinner(players);
     }
 
-    private int numRequest() {
+    private int inputNums() {
         Scanner scn = new Scanner(System.in);
         System.out.println(players[currentPlayer].getName() + ", input a number");
         num = scn.nextInt();
@@ -57,12 +57,13 @@ public class GuessNumber {
         return num;
     }
 
-    private int compareNums(int num, int targetNum) {
+    private boolean compareNums(int num, int targetNum) {
         if (num == targetNum) {
-            return 0;
+            return true;
         }
-        System.out.printf("The number %d is %s than the target number\n", num, num > targetNum ? "greater" : "less");
-        return 1;
+        System.out.printf("The number %d is %s than the target number\n",
+                num, num > targetNum ? "greater" : "less");
+        return false;
     }
 
     private void castLots() {
@@ -85,13 +86,14 @@ public class GuessNumber {
 
     private int findWinner(Player[] players){
         int max = 0;
-        if (players[max].getNumOfVictories() < players[1].getNumOfVictories())  max = 1;
-        if (players[max].getNumOfVictories() < players[2].getNumOfVictories())  max = 2;
+        if (players[max].getNumWins() < players[1].getNumWins())  max = 1;
+        if (players[max].getNumWins() < players[2].getNumWins())  max = 2;
         return max;
     }
 
-    private void printWinner(int max) {
-        if (players[max].getNumOfVictories() == 1) {
+    private void printWinner(Player[] players) {
+        int max = findWinner(players);
+        if (players[max].getNumWins() == 1) {
             System.out.println("There's no winner");
         } else {
             System.out.println("Player " + players[max].getName() + " is a winner");

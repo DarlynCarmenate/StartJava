@@ -7,7 +7,7 @@ public class Player {
     private int attempts;
     private final int[] enteredNums;
 
-    private int numOfVictories;
+    private int numWins;
 
     public Player(String name) {
         this.name = name;
@@ -22,16 +22,16 @@ public class Player {
         return attempts;
     }
 
-    public int getNumOfVictories() {
-        return numOfVictories;
+    public int getNumWins() {
+        return numWins;
     }
 
-    public void setNumOfVictories(int numOfVictories) {
-        this.numOfVictories += numOfVictories;
+    public void setNumWins(int numWins) {
+        this.numWins += numWins;
     }
 
     public boolean addNum(int num) {
-        if (num > 0 && num < 101) {
+        if (num > 0 && num <= 100) {
             enteredNums[attempts] = num;
             attempts++;
             return true;
