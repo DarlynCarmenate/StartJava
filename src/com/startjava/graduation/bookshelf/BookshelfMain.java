@@ -3,10 +3,9 @@ package com.startjava.graduation.bookshelf;
 import java.util.Scanner;
 
 public class BookshelfMain {
-
     static Scanner scn = new Scanner(System.in);
-
     private static Bookshelf bookshelf = new Bookshelf();
+
     public static void main(String[] args) {
         while (true) {
             drawBookshelf();
@@ -19,14 +18,15 @@ public class BookshelfMain {
     }
 
     private static void drawBookshelf() {
-        System.out.println("There are " + bookshelf.getNumOfBooks() + " books in a bookshelf\n" +
+        System.out.println("There are " + bookshelf.numBooks + " books in a bookshelf\n" +
                 "and " + bookshelf.getFreeShelves() + " free shelves");
-        if (bookshelf.getNumOfBooks() == 0) {
+        if (bookshelf.numBooks == 0) {
             System.out.println("The bookshelf is empty. You can input the first book there");
         } else {
-            bookshelf.getAllBooks();
+            bookshelf.getAll();
         }
     }
+
     private static void printMenu() {
         String menu = """
                 1. delete <title>
@@ -46,24 +46,24 @@ public class BookshelfMain {
         if (answer.contains("delete")) {
             System.out.println("Please, input the book's name: ");
             String toDelete = scn.nextLine();
-            if (!bookshelf.deleteBook(toDelete)) {
+            if (!bookshelf.delete(toDelete)) {
                 System.out.println("The book can't be found");
             }
         } else if (answer.contains("clear")) {
-            bookshelf.clearBookshelf();
+            bookshelf.clear();
         } else if (answer.contains("save")) {
             System.out.println("Please, input the author: ");
             String author = scn.nextLine();
-            System.out.println("Please, input the book's name: ");
-            String bookName = scn.nextLine();
+            System.out.println("Please, input the book's title: ");
+            String title = scn.nextLine();
             System.out.println("Please, input the book's year if publishing: ");
-            int publishedIn = scn.nextInt();
-            scn.nextLine();
-            bookshelf.addBook(author, bookName, publishedIn);
+            String yearPublishing = scn.nextLine();
+            Books book = new Books(author, title, yearPublishing);
+            bookshelf.add(book);
         } else if (answer.contains("find")) {
-            System.out.println("Please, input the book's name: ");
+            System.out.println("Please, input the book's title: ");
             String required = scn.nextLine();
-            System.out.println(bookshelf.findBook(required));
+            System.out.println(bookshelf.find(required));
         } else if (answer.contains("quit")) {
             return false;
         }
