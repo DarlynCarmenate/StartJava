@@ -10,62 +10,75 @@ public class BookshelfMain {
         while (true) {
             drawBookshelf();
             printMenu();
-            String command = getAnswer();
-            if (!processCommand(command)) break;
+            String command = scn.nextLine();
+            if (!runCommand(command)) break;
             System.out.println("Press ENTER to continue");
             scn.nextLine();
         }
     }
 
     private static void drawBookshelf() {
-        System.out.println("There are " + bookshelf.numBooks + " books in a bookshelf\n" +
+        System.out.println("There are " + bookshelf.getNumBooks() + " books in a bookshelf\n" +
                 "and " + bookshelf.getFreeShelves() + " free shelves");
-        if (bookshelf.numBooks == 0) {
+        if (bookshelf.getNumBooks() == 0) {
             System.out.println("The bookshelf is empty. You can input the first book there");
         } else {
-            bookshelf.getAll();
+            Books[] booksDraw = bookshelf.getAll();
+            String strRepeat = "-".repeat(bookshelf.getMaxLen() + 4);
+            for (Books book : booksDraw) {
+                if (book != null)  {
+                    System.out.println("|" + book.toString() + " ".repeat(bookshelf.getMaxLen() -
+                            book.getInfoLen()) + "|");
+                    System.out.printf("|" + strRepeat + "|\n");
+                } else {
+                    System.out.println("|" + " ".repeat(bookshelf.getMaxLen() + 4) + "|");
+                    break;
+                }
+            }
         }
     }
 
     private static void printMenu() {
-        String menu = """
+        System.out.print("""
                 1. delete <title>
                 2. clear
                 3. save <author> <title> <publishYear>
                 4. find <title>
                 5. quit
-                """;
-        System.out.print(menu);
+                """);
     }
 
-    private static String getAnswer() {
-        return scn.nextLine();
-    }
-
-    private static boolean processCommand(String answer) {
-        if (answer.contains("delete")) {
-            System.out.println("Please, input the book's name: ");
-            String toDelete = scn.nextLine();
-            if (!bookshelf.delete(toDelete)) {
-                System.out.println("The book can't be found");
+    private static boolean runCommand(String answer) {
+        switch (answer) {
+            case "delete" -> {
+                System.out.println("Please, input the book's name: ");
+                String toDelete = scn.nextLine();
+                if (!bookshelf.delete(toDelete)) {
+                    System.out.println("The book can't be found");
+                };
             }
-        } else if (answer.contains("clear")) {
-            bookshelf.clear();
-        } else if (answer.contains("save")) {
-            System.out.println("Please, input the author: ");
-            String author = scn.nextLine();
-            System.out.println("Please, input the book's title: ");
-            String title = scn.nextLine();
-            System.out.println("Please, input the book's year if publishing: ");
-            String yearPublishing = scn.nextLine();
-            Books book = new Books(author, title, yearPublishing);
-            bookshelf.add(book);
-        } else if (answer.contains("find")) {
-            System.out.println("Please, input the book's title: ");
-            String required = scn.nextLine();
-            System.out.println(bookshelf.find(required));
-        } else if (answer.contains("quit")) {
-            return false;
+            case "clear" -> bookshelf.clear();
+            case "save" -> {
+                System.out.println("Please, input the author: ");
+                String author = scn.nextLine();
+                System.out.println("Please, input the book's title: ");
+                String title = scn.nextLine();
+                System.out.println("Please, input the book's year if publishing: ");
+                String yearPublishing = scn.nextLine();
+                Books book = new Books(author, title, yearPublishing);
+                bookshelf.add(book);
+            }
+            case "find" -> {
+                System.out.println("Please, input the book's title: ");
+                String required = scn.nextLine();
+                Books foundBook = bookshelf.find(required);
+                if (foundBook == null) {
+                    System.out.println("The book is not found");
+                } else {
+                    System.out.println(foundBook);
+                }
+            }
+            case "quit" ->  { return false; }
         }
         return true;
     }

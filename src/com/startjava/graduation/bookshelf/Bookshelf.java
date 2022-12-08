@@ -3,66 +3,78 @@ package com.startjava.graduation.bookshelf;
 import java.util.Arrays;
 
 public class Bookshelf {
-    public int numBooks;
-    private final Books[] books = new Books[10];
+    private final int LENGTH = 10;
+    private int numBooks;
+    private final Books[] books = new Books[LENGTH];
     private int maxLen;
 
+    public int getNumBooks() {
+        return numBooks;
+    }
+
+    public int getMaxLen() {
+        return maxLen;
+    }
+
     public void add(Books book) {
-        if (numBooks >= books.length) {
+        if (numBooks >= LENGTH) {
             System.out.println("There's no free space for books. Clear the bookshelf");
             return;
         }
         books[numBooks] = book;
-        if (books[numBooks].getInfoLen() > maxLen) maxLen = books[numBooks].getInfoLen();
-        numBooks++;
+        if (books[numBooks].getInfoLen() > maxLen) {
+            maxLen = books[numBooks].getInfoLen();
+            numBooks++;
+        }
     }
 
-    public String find(String required) {
+    public Books find(String title) {
         for (int i = 0; i < numBooks; i++) {
-            if (books[i].getTitle().equals(required)) {
-                return books[i].toString();
+            if (books[i].getTitle().equals(title)) {
+                return books[i];
             }
         }
-        return "There's no such book";
+        return null;
     }
 
-    public boolean delete(String toDelete) {
-        int toCheck;
+    public boolean delete(String title) {
+        int bookLen;
         for (int i = 0; i < numBooks; i++) {
-            if (books[i].getTitle().equals(toDelete)) {
-                toCheck = books[i].getInfoLen();
-                System.arraycopy(books, i + 1, books, i, numBooks - i);
+            if (books[i].getTitle().equals(title)) {
+                bookLen = books[i].getInfoLen();
+                if (i == numBooks-1) {
+                    books[i] = null;
+                } else {
+                    System.arraycopy(books, i + 1, books, i, numBooks - i - 1);
+                }
                 numBooks--;
-                if (toCheck == maxLen) maxLen = maxLen();
+                if (bookLen == maxLen) {
+                    if (numBooks >= 1 ) {
+                        maxLen = calcMaxLen();
+                    } else {
+                        maxLen = 0;
+                    }
+                }
                 return true;
             }
         }
         return false;
     }
 
-    public void getAll() {
-        String strRepeat = "-".repeat(maxLen + 4);
-        for (Books book : books) {
-            if (book != null)  {
-                System.out.println("|" + book.toString() + " ".repeat(maxLen - book.getInfoLen()) + "|");
-                System.out.printf("|" + strRepeat + "|\n");
-            } else {
-                System.out.println("|" + " ".repeat(maxLen + 4) + "|");
-                break;
-            }
-        }
+    public Books[] getAll() {
+        return books;
     }
 
     public int getFreeShelves() {
-        return books.length - numBooks;
+        return LENGTH - numBooks;
     }
 
     public void clear() {
-        Arrays.fill(books, null);
+        Arrays.fill(books, 0, numBooks, null);
         numBooks = 0;
     }
 
-    private int maxLen() {
+    private int calcMaxLen() {
         int maxLen = books[0].getInfoLen();
         for (int i = 1; i < numBooks; i++) {
             if (books[i].getInfoLen() > maxLen) maxLen = books[i].getInfoLen();
