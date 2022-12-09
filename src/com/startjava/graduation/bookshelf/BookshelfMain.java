@@ -18,23 +18,19 @@ public class BookshelfMain {
     }
 
     private static void drawBookshelf() {
-        System.out.println("There are " + bookshelf.getNumBooks() + " books in a bookshelf\n" +
-                "and " + bookshelf.getFreeShelves() + " free shelves");
         if (bookshelf.getNumBooks() == 0) {
             System.out.println("The bookshelf is empty. You can input the first book there");
         } else {
-            Books[] booksDraw = bookshelf.getAll();
-            String strRepeat = "-".repeat(bookshelf.getMaxLen() + 4);
-            for (Books book : booksDraw) {
-                if (book != null)  {
-                    System.out.println("|" + book.toString() + " ".repeat(bookshelf.getMaxLen() -
-                            book.getInfoLen()) + "|");
-                    System.out.printf("|" + strRepeat + "|\n");
-                } else {
-                    System.out.println("|" + " ".repeat(bookshelf.getMaxLen() + 4) + "|");
-                    break;
-                }
+            System.out.println("There are " + bookshelf.getNumBooks() + " books in a bookshelf\n" +
+                    "and " + bookshelf.getFreeShelves() + " free shelves");
+            Books[] books = bookshelf.getAll();
+            String border = "-".repeat(bookshelf.getMaxLen() + 4);
+            for (Books book : books) {
+                System.out.println("|" + book + " ".repeat(bookshelf.getMaxLen() -
+                         book.getInfoLen()) + "|");
+                System.out.printf("|" + border + "|\n");
             }
+            System.out.println("|" + " ".repeat(bookshelf.getMaxLen() + 4) + "|");
         }
     }
 
@@ -49,15 +45,17 @@ public class BookshelfMain {
     }
 
     private static boolean runCommand(String answer) {
-        switch (answer) {
+        return switch (answer) {
             case "delete" -> {
                 System.out.println("Please, input the book's name: ");
-                String toDelete = scn.nextLine();
-                if (!bookshelf.delete(toDelete)) {
-                    System.out.println("The book can't be found");
-                };
+                String title = scn.nextLine();
+                if (!bookshelf.delete(title))  System.out.println("The book can't be found");
+                yield true;
             }
-            case "clear" -> bookshelf.clear();
+            case "clear" -> {
+                bookshelf.clear();
+                yield true;
+            }
             case "save" -> {
                 System.out.println("Please, input the author: ");
                 String author = scn.nextLine();
@@ -67,19 +65,21 @@ public class BookshelfMain {
                 String yearPublishing = scn.nextLine();
                 Books book = new Books(author, title, yearPublishing);
                 bookshelf.add(book);
+                yield true;
             }
             case "find" -> {
                 System.out.println("Please, input the book's title: ");
-                String required = scn.nextLine();
-                Books foundBook = bookshelf.find(required);
+                String title = scn.nextLine();
+                Books foundBook = bookshelf.find(title);
                 if (foundBook == null) {
                     System.out.println("The book is not found");
                 } else {
                     System.out.println(foundBook);
                 }
+                yield true;
             }
-            case "quit" ->  { return false; }
-        }
-        return true;
+            case "quit" -> false;
+            default -> true;
+        };
     }
 }

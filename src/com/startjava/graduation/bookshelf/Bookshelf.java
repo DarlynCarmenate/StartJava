@@ -3,9 +3,9 @@ package com.startjava.graduation.bookshelf;
 import java.util.Arrays;
 
 public class Bookshelf {
-    private final int LENGTH = 10;
+    private static final int SHELF_LIMIT = 10;
     private int numBooks;
-    private final Books[] books = new Books[LENGTH];
+    private final Books[] books = new Books[SHELF_LIMIT];
     private int maxLen;
 
     public int getNumBooks() {
@@ -17,15 +17,15 @@ public class Bookshelf {
     }
 
     public void add(Books book) {
-        if (numBooks >= LENGTH) {
+        if (numBooks >= SHELF_LIMIT) {
             System.out.println("There's no free space for books. Clear the bookshelf");
             return;
         }
         books[numBooks] = book;
         if (books[numBooks].getInfoLen() > maxLen) {
             maxLen = books[numBooks].getInfoLen();
-            numBooks++;
         }
+        numBooks++;
     }
 
     public Books find(String title) {
@@ -42,19 +42,10 @@ public class Bookshelf {
         for (int i = 0; i < numBooks; i++) {
             if (books[i].getTitle().equals(title)) {
                 bookLen = books[i].getInfoLen();
-                if (i == numBooks-1) {
-                    books[i] = null;
-                } else {
-                    System.arraycopy(books, i + 1, books, i, numBooks - i - 1);
-                }
                 numBooks--;
-                if (bookLen == maxLen) {
-                    if (numBooks >= 1 ) {
-                        maxLen = calcMaxLen();
-                    } else {
-                        maxLen = 0;
-                    }
-                }
+                System.arraycopy(books, i + 1, books, i, numBooks - i);
+                books[numBooks] = null;
+                if (bookLen == maxLen)  maxLen = numBooks >= 1 ? calcMaxLen() : 0;
                 return true;
             }
         }
@@ -62,11 +53,13 @@ public class Bookshelf {
     }
 
     public Books[] getAll() {
-        return books;
+        Books[] tempArray = new Books[numBooks];
+        System.arraycopy(books, 0, tempArray, 0, numBooks);
+        return tempArray;
     }
 
     public int getFreeShelves() {
-        return LENGTH - numBooks;
+        return SHELF_LIMIT - numBooks;
     }
 
     public void clear() {
