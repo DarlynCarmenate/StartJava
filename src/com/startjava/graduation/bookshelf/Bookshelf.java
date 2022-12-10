@@ -45,7 +45,8 @@ public class Bookshelf {
                 numBooks--;
                 System.arraycopy(books, i + 1, books, i, numBooks - i);
                 books[numBooks] = null;
-                if (bookLen == maxLen)  maxLen = numBooks >= 1 ? calcMaxLen() : 0;
+                if (bookLen == maxLen)
+                    maxLen = numBooks >= 1 ? calcMaxLen() : 0;
                 return true;
             }
         }
@@ -53,9 +54,7 @@ public class Bookshelf {
     }
 
     public Books[] getAll() {
-        Books[] tempArray = new Books[numBooks];
-        System.arraycopy(books, 0, tempArray, 0, numBooks);
-        return tempArray;
+        return Arrays.copyOf(books, numBooks);
     }
 
     public int getFreeShelves() {

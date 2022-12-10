@@ -28,7 +28,7 @@ public class BookshelfMain {
             for (Books book : books) {
                 System.out.println("|" + book + " ".repeat(bookshelf.getMaxLen() -
                          book.getInfoLen()) + "|");
-                System.out.printf("|" + border + "|\n");
+                System.out.println("|" + border + "|");
             }
             System.out.println("|" + " ".repeat(bookshelf.getMaxLen() + 4) + "|");
         }
@@ -49,7 +49,8 @@ public class BookshelfMain {
             case "delete" -> {
                 System.out.println("Please, input the book's name: ");
                 String title = scn.nextLine();
-                if (!bookshelf.delete(title))  System.out.println("The book can't be found");
+                if (!bookshelf.delete(title))
+                    System.out.println("The book can't be found");
                 yield true;
             }
             case "clear" -> {
@@ -79,7 +80,10 @@ public class BookshelfMain {
                 yield true;
             }
             case "quit" -> false;
-            default -> true;
+            default -> {
+                System.out.println("The command is not supported");
+                yield true;
+            }
         };
     }
 }
